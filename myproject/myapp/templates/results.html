@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Results</title>
-</head>
-<body>
-    <h1>Results</h1>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Results{% endblock %}
+{% block content%}
+    <div>
+        <h1>Results</h1>
     {% if error_message %}
         <p style="color: red;">{{ error_message }}</p>
     {% endif %}
-    <ul>
+    <ul class="list-group list-group-horizontal">
     {% for result in results %}
-        <li>{{ result.error }}:
+        <li class="list-group-item">{{ result.error }}:
             <ul>
             {% for task, count in result.counts.items %}
                 <li>{{ task }}: {{ count }}</li>
@@ -19,5 +18,5 @@
         </li>
     {% endfor %}
     </ul>
-</body>
-</html>
+    </div>
+{% endblock %}

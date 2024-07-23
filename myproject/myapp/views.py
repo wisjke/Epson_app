@@ -1,10 +1,8 @@
-# myapp/views.py
 from django.shortcuts import render, redirect
 from .forms import UploadForm
 from .models import Upload
 from .tools import SaleReader, MerchReader
 from collections import Counter
-import os
 
 
 def slicer(elem):
@@ -17,6 +15,8 @@ def upload_files(request):
         if form.is_valid():
             upload = form.save()
             return redirect('process_files', pk=upload.pk)
+        else:
+            print(form.errors)
     else:
         form = UploadForm()
     return render(request, 'upload.html', {'form': form})
